@@ -1,26 +1,49 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import * as contentful from 'contentful';
+import Thought from './Thought';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const space = process.env.REACT_APP_CONTENTFUL_SPACE_ID
+const accessToken = process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN
+
+class App extends Component {
+
+  state = {
+    thoughts: []
+  }
+
+  client = contentful.createClient({
+    space: space,
+    accessToken: accessToken
+  })
+
+  
+
+  componentDidMount() {
+    this.fetchThoughts().then(this.setThoughts)
+  }
+
+  fetchThoughts = () => this.client.getEntries({
+    select: 'sys.createdAt,sys.id,fields'
+  })
+
+  setThoughts = response => {
+    this.setState({
+      thoughts: response.items
+    })
+  }
+  
+
+  render() {
+    return (
+      <div className="App">
+        <ul>
+          {this.state.thoughts.map(({fields, sys}) =>
+            <Thought key={sys.id} date={sys.createdAt} text={fields.text} />
+          )}
+        </ul>
+      </div>
+    )
+  }
 }
 
 export default App;
