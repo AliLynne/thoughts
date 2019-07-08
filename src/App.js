@@ -23,7 +23,8 @@ class App extends Component {
   }
 
   fetchThoughts = () => this.client.getEntries({
-    select: 'sys.createdAt,sys.id,fields'
+    select: 'sys.createdAt,sys.id,fields',
+    order: 'sys.createdAt'
   })
 
   setThoughts = response => {
