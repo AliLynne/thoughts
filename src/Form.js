@@ -46,7 +46,7 @@ export default class Form extends Component {
   }
 
   render() {
-    if (this.state.redirect) return <Redirect to='/' />
+    if (this.state.redirect) return <Redirect to='/drafts' />
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
