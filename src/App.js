@@ -1,50 +1,23 @@
 import React, { Component } from 'react';
-import * as contentful from 'contentful';
-import Thought from './Thought';
 import Header from './Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Form from './Form';
+import List from './List';
 
-const space = process.env.REACT_APP_CONTENTFUL_SPACE_ID
-const accessToken = process.env.REACT_APP_CONTENTFUL_ACCESS_TOKEN
+
 
 class App extends Component {
-
-  state = {
-    thoughts: []
-  }
-
-  client = contentful.createClient({
-    space: space,
-    accessToken: accessToken
-  })
-
-  
-
-  componentDidMount() {
-    this.fetchThoughts().then(this.setThoughts)
-  }
-
-  fetchThoughts = () => this.client.getEntries({
-    select: 'sys.createdAt,sys.id,fields',
-    order: '-sys.createdAt'
-  })
-
-  setThoughts = response => {
-    this.setState({
-      thoughts: response.items
-    })
-  }
-  
 
   render() {
     return (
       <div className="App container">
+      <Router>
         <Header />
-        
-          <ul className="collection">
-            {this.state.thoughts.map(({fields, sys}) =>
-              <Thought key={sys.id} date={sys.createdAt} text={fields.text} />
-            )}
-          </ul>
+
+        <Route exact path="/" component={List} />
+        <Route exact path="/new" component={Form} />
+          
+        </Router>
         </div>
     )
   }
