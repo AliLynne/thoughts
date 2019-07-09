@@ -36,7 +36,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App container">
         <ul>
           {this.state.thoughts.map(({fields, sys}) =>
             <Thought key={sys.id} date={sys.createdAt} text={fields.text} />
