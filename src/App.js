@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from './Header';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Form from './Form';
-import List from './List';
+import PublishedList from './PublishedList';
+import DraftList from './DraftList';
 
 
 
@@ -14,7 +15,8 @@ class App extends Component {
       <Router>
         <Header />
 
-        <Route exact path="/" component={List} />
+        <Route exact path="/" component={PublishedList} />
+        <Route exact path="/drafts" component={DraftList} />
         <Route exact path="/new" component={Form} />
           
         </Router>
