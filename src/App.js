@@ -39,12 +39,13 @@ class App extends Component {
     return (
       <div className="App container">
         <Header />
-        <ul>
-          {this.state.thoughts.map(({fields, sys}) =>
-            <Thought key={sys.id} date={sys.createdAt} text={fields.text} />
-          )}
-        </ul>
-      </div>
+        
+          <ul className="collection">
+            {this.state.thoughts.map(({fields, sys}) =>
+              <Thought key={sys.id} date={sys.createdAt} text={fields.text} />
+            )}
+          </ul>
+        </div>
     )
   }
 }

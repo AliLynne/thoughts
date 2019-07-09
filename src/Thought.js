@@ -3,13 +3,14 @@ import moment from 'moment';
 
 const Thought = (props) => {
   return (
-    <div>
-      <li>
-        <p>{props.text}</p>
-        <p>{moment(props.date).format('MMMM Do, YYYY')} - {moment(props.date).fromNow()}</p>
+      <li className="collection-item">
+        <div>
+          <span>{props.text}</span>
+          <span className="pink-text secondary-content">{moment(props.date).fromNow()}</span>
+        </div>
+        
+        
       </li>
-      
-    </div>
   )
 }
 
