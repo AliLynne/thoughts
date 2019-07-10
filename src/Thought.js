@@ -43,18 +43,18 @@ class Thought extends Component {
     let button
 
     if (needButton) {
-      button = <button onClick={() => this.handleClick(this.state.id)}>{this.props.buttonText}</button>
+      button = <button className="btn pink" onClick={() => this.handleClick(this.state.id)}>{this.props.buttonText}</button>
     } else {
       button = null
     }
 
     return (
-      <li className="collection-item">
-        <div>
-          <p>{this.state.text}</p>
-          <span className="pink-text secondary-content">{moment(this.state.date).fromNow()}</span>
+      <li className="collection-item avatar">
+          <blockquote className="truncate">{this.state.text}</blockquote>
+          
+            <p className="pink-text">{moment(this.state.date).fromNow()}</p>
           {button}
-        </div>
+          
         
         
       </li>
