@@ -7,6 +7,7 @@
     "contentful-management": "^5.9.0",
     "materialize-css": "^1.0.0-rc.2",
     "moment": "^2.24.0",
+    "netlify-identity-widget": "^1.5.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1",

@@ -16,7 +16,6 @@ class Thought extends Component {
       id: props.sys.id,
       redirect: false,
     }
-    console.log(this.props)
   }
 
   client = contentful.createClient({
